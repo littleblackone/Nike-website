@@ -1,3 +1,4 @@
+<<<<<<< HEAD
 # Nike shoes website
 
 This template should help get you started developing with Vue 3 in Vite.
@@ -44,3 +45,7 @@ npm run build
 ```sh
 npm run lint
 ```
+=======
+# Nike-website
+High imitation of CN Nike website
+>>>>>>> 12945dc54bbac25acdab3dd7dcce6bf37154e3ed
