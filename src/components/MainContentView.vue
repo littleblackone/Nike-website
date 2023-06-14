@@ -40,7 +40,7 @@
     </a>
   </div>
   <!-- 六一 系列-->
-  <div class="px-12 mt-[5rem] relative">
+  <div class="px-12 mt-[5rem] relative z-[-1]">
     <!-- <img src="@/assets/images/hero3.png" alt="六一系列img" class="h-full w-full" /> -->
     <video src="@/assets/videos/61ad.mp4" poster="@/assets/images/hero3.png" preload="auto" class="h-full w-full"
       ref="videoRef" @playing="handleVideoPlaying" @loadedmetadata="handleVideoLoaded" :controls="isPlaying"></video>
@@ -98,7 +98,7 @@
       <div class="flex-1 h-full w-full">
         <img src="@/assets/images/hp.webp" alt="Nike App img" class="" />
       </div>
-      <div class="overflow-hidden h-full w-full flex-1 relative cursor-pointer" @mousemove="isHover = true"
+      <div class="overflow-hidden z-[-1] h-full w-full flex-1 relative cursor-pointer" @mousemove="isHover = true"
         @mouseleave="waitAndHideIcon">
         <video ref="videoRef2" src="@/assets/videos/hiphop.mp4" autoplay :muted="videoState.isMuted" loop preload="auto"
           @click="toggleVideo"></video>
