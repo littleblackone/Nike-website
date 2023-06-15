@@ -1,5 +1,5 @@
 {
-  "files": [],
+  "files": ["src/assets/shoes.json"],
   "references": [
     {
       "path": "./tsconfig.node.json"
@@ -10,6 +10,8 @@
   ],
 
   "compilerOptions": {
-    "types": ["element-plus/global"]
-  }
+    "types": ["element-plus/global"],
+    "resolveJsonModule": true
+  },
+  "include": ["src/**/*.ts", "src/**/*.json"]
 }

@@ -11,6 +11,8 @@ declare module 'vue' {
     BuyButton: typeof import('./src/components/Buttons/buyButton.vue')['default']
     ElButt: typeof import('element-plus/es')['ElButt']
     ElButton: typeof import('element-plus/es')['ElButton']
+    ElCarousel: typeof import('element-plus/es')['ElCarousel']
+    ElCarouselItem: typeof import('element-plus/es')['ElCarouselItem']
     ElementCom: typeof import('./src/components/elementCom.vue')['default']
     ElRow: typeof import('element-plus/es')['ElRow']
     ElSlider: typeof import('element-plus/es')['ElSlider']

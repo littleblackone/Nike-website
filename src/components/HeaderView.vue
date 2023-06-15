@@ -1,6 +1,6 @@
 <template>
   <!-- 位置固定的header部分 -->
-  <div class="fixed top-0 w-full">
+  <div class="fixed top-0 w-full z-[100]">
     <div class="h-[36px] w-full bg-[#F5F5F5] py-1 px-12 items-center flex">
       <div class="flex gap-6 items-center">
         <JordanSvg class="cursor-pointer hover:fill-[#767575]" />
@@ -17,7 +17,7 @@
       <nav class="flex items-center gap-6 text-base list-none mx-auto pl-[12rem]">
         <li class="playNav">
           <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">玩转酷夏</span>
-          <div class="playSummer absolute top-[4rem] left-0 bg-white w-full z-10">
+          <div class="playSummer absolute top-[4rem] left-0 bg-white w-full">
             <div class="flex justify-center gap-[8rem] pt-4 pb-[2rem] pl-[15rem] pr-[20rem]">
               <ul>
                 <li><a href="#">正肩Tee</a></li>
@@ -159,11 +159,11 @@ import SearchSvg from "./SvgIcons/searchSvg.vue";
 
 .mask {
   width: 100%;
-  height: 50%;
+  height: 0;
   top: 53%;
   position: fixed;
   left: 0;
-  z-index: 9;
+  z-index: -1;
   backdrop-filter: blur(0px);
   transition: all .3s;
   background-color: rgba($color: #000000, $alpha: 0);
@@ -182,7 +182,7 @@ import SearchSvg from "./SvgIcons/searchSvg.vue";
   height: 70%;
   top: 53%;
   position: fixed;
-  z-index: 9;
+  z-index: 2;
   backdrop-filter: blur(4px);
   background-color: rgba($color: #000000, $alpha: .3);
 }

@@ -1,6 +1,6 @@
 {
   "extends": "@vue/tsconfig/tsconfig.dom.json",
-  "include": ["env.d.ts", "src/**/*", "src/**/*.vue"],
+  "include": ["env.d.ts", "src/**/*", "src/**/*.vue", "src/**/*.ts", "src/**/*.json"],
   "exclude": ["src/**/__tests__/*"],
   "compilerOptions": {
     "composite": true,
@@ -11,5 +11,7 @@
     "moduleResolution": "node",
     "resolveJsonModule": true,
     "noImplicitAny": false
-  }
+  },
+  "files": ["src/assets/shoes.json"]
+  // "include": ["src/**/*.ts", "src/**/*.json"]
 }

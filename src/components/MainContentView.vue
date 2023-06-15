@@ -12,6 +12,35 @@
       </a>
     </figure>
   </div>
+  <!-- 男鞋推荐榜单 -->
+  <div class="px-8 mt-[5rem]">
+    <h1 class="pl-4 mb-6 text-[1.5rem]">6.18男鞋推荐榜单</h1>
+    <carousel :items-to-show="3" :mouseDrag="false" class="z-1">
+      <slide v-for="shoe in shoes" :key="shoe.name">
+        <a href="">
+          <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class=" w-[30vw] z-0">
+          <div class="mt-4 flex justify-between">
+            <div class=" flex flex-col gap-2 items-start">
+              <span>{{ shoe.name }}</span>
+              <span class=" text-gray-500">{{ shoe.name_cn }}</span>
+            </div>
+            <div class=" flex gap-1">
+              <span class="old_price relative">
+                {{ shoe.old_price }}
+              </span>
+              <span>{{ shoe.new_price }}</span>
+            </div>
+          </div>
+        </a>
+      </slide>
+      <template #addons>
+        <navigation />
+        <pagination />
+      </template>
+    </carousel>
+  </div>
+  <!-- 女鞋推荐榜单 -->
+  <div class="px-12 mt-[5rem]"></div>
   <!-- 心选好物多件多折 -->
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">心选好物多件多折</h1>
@@ -220,6 +249,9 @@ import smallArrow from "@/components/SvgIcons/smallArrow.vue";
 import unMuteSvg from "./SvgIcons/unMuteSvg.vue";
 import muteSvg from "./SvgIcons/muteSvg.vue";
 import { formatTime } from "@/utils/helperFun";
+import shoes from "@/assets/shoes.json";
+import 'vue3-carousel/dist/carousel.css';
+import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 
 //61儿童节活动视频自定义功能
 const formattedTime = ref("00:00");
@@ -332,7 +364,7 @@ watch(isMuted, () => {
 // };
 </script>
 
-<style lang="scss" scoped>
+<style lang="scss" >
 /* 过渡样式 */
 .fade-enter-active,
 .fade-leave-active {
@@ -403,5 +435,20 @@ watch(isMuted, () => {
 
 .bottomMenu:hover {
   height: 454px;
+}
+
+//old price
+.old_price::before {
+  content: "";
+  width: 100%;
+  height: 1px;
+  background-color: #111;
+  position: absolute;
+  top: 21%;
+}
+
+.carousel__prev,
+.carousel__next {
+  top: 41% !important;
 }
 </style>
