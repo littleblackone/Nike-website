@@ -9,7 +9,7 @@
       <div class="flex items-center ml-auto">
         <a href="#" class="text-[12px] hover:text-gray-500">帮助 <span class="mx-[10px]">|</span></a>
         <a href="#" class="text-[12px] hover:text-gray-500">立即加入 <span class="mx-[10px]">|</span></a>
-        <a href="#" class="text-[12px] hover:text-gray-500">登录</a>
+        <router-link to="/login" class="text-[12px] hover:text-gray-500">登录</router-link>
       </div>
     </div>
     <div class="h-[64px] w-full bg-white flex px-12 py-4 items-center relative">
