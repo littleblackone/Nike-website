@@ -19,6 +19,16 @@
         <!-- email验证信息 -->
         <p v-if="errors.email" class="text-red-500 mt-2 text-sm">{{ errors.email }}</p>
       </div>
+      <!-- 验证码 -->
+      <div class="flex gap-1 items-center mt-8 justify-start">
+        <span class="">验证码:</span>
+        <div class="flex items-center">
+          <input type="text" v-model="code" class="outline-none rounded-[2px] py-2 px-1 w-[200px] border border-black">
+          <button @click="handleSendCode" :disabled="showResendCode"
+            class="hover:bg-opacity-60 bg-black rounded-r-[2px] text-white py-[8px] px-[16px] translate-x-[-4rem] mr-1">发送</button>
+          <span v-show="showResendCode" class=" translate-x-[-60px]">{{ resendCodeTimeout }}s后重新发送</span>
+        </div>
+      </div>
       <!-- checkbox -->
       <div class="flex gap-6 items-center mt-8">
         <input type="checkbox" v-model="checked" class="outline-none scale-150 rounded-md">
@@ -28,12 +38,9 @@
           <a href="#" class=" font-semibold border-b border-black">使用条款</a>
         </span>
       </div>
-      <!-- 显示登录失败信息 -->
-      <p v-if="loginError" class="text-red-500 mt-2">{{ loginError }}</p>
-      <router-link to="/register" class=" ml-auto">
-        <span class=" text-gray-400 hover:text-gray-500 border-b border-b-gray-400">注册</span>
-      </router-link>
-      <button type="submit" @click="handleLogin"
+      <!-- 显示注册失败信息 -->
+      <p v-if="registerError" class="text-red-500 mt-2">{{ registerError }}</p>
+      <button type="submit" @click="handleRegister"
         class="mt-8 float-right rounded-full hover:bg-opacity-60 bg-black text-white py-[6px] px-[22px]">
         继续
       </button>
@@ -45,26 +52,51 @@
 import nikelogoSvg from '@/components/SvgIcons/nikelogoSvg.vue';
 import { computed, onBeforeMount, ref, watch } from 'vue';
 import { useUserStore } from '@/stores/user'
+import axios from "axios"
 
 const name = ref("")
 const email = ref("")
 const checked = ref(false);
+const code = ref("")
+const resendCodeTimeout = ref(60);
+const showResendCode = ref(false)
 const errors = ref({
   name: '',
   email: ''
 });
-//使用封装在pinia中的login方法登录。
-const userStore = useUserStore();
+
 
 //初次进入登录页面时，清空loginError
 onBeforeMount(() => {
-  userStore.loginError = ""
+  userStore.registerError = ""
 });
 
-let loginError = computed(() => userStore.loginError)
-// const loginError = ref(userStore.loginError)
-const handleLogin = async (): Promise<void> => {
-  await userStore.Login(name.value, email.value, checked.value)
+let registerError = computed(() => userStore.registerError)
+
+//发送验证码
+const handleSendCode = async () => {
+  //如果正在倒计时，则什么都不做
+  if (showResendCode.value) {
+    return
+  }
+  //发送验证码
+  await axios.post("http://localhost:3000/sendCode");
+  //倒计时
+  resendCodeTimeout.value = 60
+  showResendCode.value = true;
+  const interval = setInterval(() => {
+    resendCodeTimeout.value--
+    if (resendCodeTimeout.value == 0) {
+      showResendCode.value = false
+      clearInterval(interval)
+    }
+  }, 1000)
+}
+
+//使用封装在pinia中的register方法登录。
+const userStore = useUserStore();
+const handleRegister = async () => {
+  await userStore.register(name.value, email.value, checked.value, code.value)
 }
 
 watch([name, email], ([newName, newEmail]) => {

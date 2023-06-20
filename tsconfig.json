@@ -10,8 +10,13 @@
   ],
 
   "compilerOptions": {
-    "types": ["element-plus/global"],
-    "resolveJsonModule": true
+    "types": ["element-plus/global","node"],
+    "resolveJsonModule": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*": ["src/*"],
+      "firebase/app": ["node_modules/firebase/app/dist/index.esm.js"]
+    }
   },
-  "include": ["src/**/*.ts", "src/**/*.json"]
+  "include": ["src/**/*.ts", "src/**/*.json", "src/server/server.js"]
 }
