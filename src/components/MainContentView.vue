@@ -17,7 +17,7 @@
     <h1 class="pl-4 mb-6 text-[1.5rem]">6.18男鞋推荐榜单</h1>
     <carousel :items-to-show="3" :mouseDrag="false" class="z-1">
       <slide v-for="shoe in shoes" :key="shoe.name">
-        <a href="">
+        <router-link to="/stripe" href="">
           <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class=" w-[30vw] z-0">
           <div class="mt-4 flex justify-between">
             <div class=" flex flex-col gap-2 items-start">
@@ -31,7 +31,7 @@
               <span>{{ shoe.new_price }}</span>
             </div>
           </div>
-        </a>
+        </router-link>
       </slide>
       <template #addons>
         <navigation />
@@ -39,8 +39,6 @@
       </template>
     </carousel>
   </div>
-  <!-- 女鞋推荐榜单 -->
-  <div class="px-12 mt-[5rem]"></div>
   <!-- 心选好物多件多折 -->
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">心选好物多件多折</h1>
@@ -69,7 +67,7 @@
     </a>
   </div>
   <!-- 六一 系列-->
-  <div class="px-12 mt-[5rem] relative z-[-1]">
+  <div class="px-12 mt-[5rem] relative">
     <!-- <img src="@/assets/images/hero3.png" alt="六一系列img" class="h-full w-full" /> -->
     <video src="@/assets/videos/61ad.mp4" poster="@/assets/images/hero3.png" preload="auto" class="h-full w-full"
       ref="videoRef" @playing="handleVideoPlaying" @loadedmetadata="handleVideoLoaded" :controls="isPlaying"></video>
@@ -155,7 +153,7 @@
             </div>
           </div>
         </transition> -->
-        <transition name="fade" made="out-in">
+        <transition name="fade" mode="out-in">
           <div v-show="isHover" class="absolute">
             <el-slider v-model="volumeValue" vertical height="50px" />
           </div>
