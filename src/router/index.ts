@@ -1,9 +1,7 @@
 import { createRouter, createWebHistory } from "vue-router";
-// import HomeView from "../views/HomeView.vue";
 import MainContentView from "@/components/MainContentView.vue";
 import LoginView from "../views/LoginView.vue";
 import registerView from "../views/RegisterView.vue";
-import stripeView from "../views/stripeView.vue";
 
 const router = createRouter({
   history: createWebHistory(import.meta.env.BASE_URL),
@@ -25,11 +23,6 @@ const router = createRouter({
       name: "register",
       component: registerView,
       meta: { hideHeaderFooter: true } // 添加meta字段表示需要隐藏Header和Footer
-    },
-    {
-      path: "/stripe",
-      name: "stripe",
-      component: stripeView
     }
   ]
 });

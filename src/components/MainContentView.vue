@@ -127,7 +127,7 @@
       <div class="flex-1 h-full w-full">
         <img src="@/assets/images/hp.webp" alt="Nike App img" class="" />
       </div>
-      <div class="overflow-hidden z-[-1] h-full w-full flex-1 relative cursor-pointer" @mousemove="isHover = true"
+      <div class="overflow-hidden z-1 h-full w-full flex-1 relative cursor-pointer" @mousemove="isHover = true"
         @mouseleave="waitAndHideIcon">
         <video ref="videoRef2" src="@/assets/videos/hiphop.mp4" autoplay :muted="videoState.isMuted" loop preload="auto"
           @click="toggleVideo"></video>
@@ -329,7 +329,6 @@ const checkOut = async (shoe) => {
   } catch (error) {
     console.log(error);
   }
-  console.log("请求发送成功");
 };
 
 //自定义调整音量组件

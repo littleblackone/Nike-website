@@ -52,7 +52,6 @@ router.post("/sendCode", async (ctx) => {
 
   try {
     const info = await transporter.sendMail(mailOptions);
-    console.log("验证码已成功发送：" + info.response);
     ctx.body = {
       success: true,
       message: "验证码已成功发送",
