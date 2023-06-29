@@ -1,5 +1,5 @@
 <template>
-  <div class="w-full h-full bg-[#111111] relative px-44">
+  <div class="footerPart w-full h-full bg-[#111111] relative px-44">
     <div class="pt-8 pb-32 pl-14 list-none flex gap-[10rem] justify-start">
       <ul class="text-white flex flex-col gap-4 text-[14px]">
         <a href="#">

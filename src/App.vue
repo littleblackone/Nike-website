@@ -11,4 +11,8 @@ import FooterView from "@/components/FooterView.vue";
 import HeaderView from "@/components/HeaderView.vue";
 </script>
 
-<style lang="scss" scoped></style>
+<style lang="scss">
+.hide-header-footer {
+  display: none;
+}
+</style>

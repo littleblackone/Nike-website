@@ -17,21 +17,23 @@
     <h1 class="pl-4 mb-6 text-[1.5rem]">6.18男鞋推荐榜单</h1>
     <carousel :items-to-show="3" :mouseDrag="false" class="z-1">
       <slide v-for="shoe in shoes" :key="shoe.name">
-        <router-link to="/stripe" href="">
-          <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class=" w-[30vw] z-0">
-          <div class="mt-4 flex justify-between">
-            <div class=" flex flex-col gap-2 items-start">
-              <span>{{ shoe.name }}</span>
-              <span class=" text-gray-500">{{ shoe.name_cn }}</span>
+        <div @click="checkOut(shoe)">
+          <router-link to="/">
+            <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class=" w-[30vw] z-0">
+            <div class="mt-4 flex justify-between">
+              <div class=" flex flex-col gap-2 items-start">
+                <span>{{ shoe.name }}</span>
+                <span class=" text-gray-500">{{ shoe.name_cn }}</span>
+              </div>
+              <div class=" flex gap-1">
+                <span class="old_price relative">
+                  {{ shoe.old_price }}
+                </span>
+                <span>{{ shoe.new_price }}</span>
+              </div>
             </div>
-            <div class=" flex gap-1">
-              <span class="old_price relative">
-                {{ shoe.old_price }}
-              </span>
-              <span>{{ shoe.new_price }}</span>
-            </div>
-          </div>
-        </router-link>
+          </router-link>
+        </div>
       </slide>
       <template #addons>
         <navigation />
@@ -250,6 +252,7 @@ import { formatTime } from "@/utils/helperFun";
 import shoes from "@/assets/shoes.json";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
+import axios from "axios";
 
 //61儿童节活动视频自定义功能
 const formattedTime = ref("00:00");
@@ -317,6 +320,18 @@ watch(isMuted, () => {
     }
   }
 })
+
+//发送stripe请求
+const checkOut = async (shoe) => {
+  try {
+    const response = await axios.post('http://localhost:3000/create-checkout-session', { shoe });
+    window.location.href = response.data.redirectUrl;
+  } catch (error) {
+    console.log(error);
+  }
+  console.log("请求发送成功");
+};
+
 //自定义调整音量组件
 // const isDragging = ref(false);
 // // const smallBar: Ref<HTMLDivElement | null> = ref(null);

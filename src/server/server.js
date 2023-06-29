@@ -5,6 +5,17 @@ const randomstring = require("randomstring");
 const bodyParser = require("koa-bodyparser");
 const jsonError = require("koa-json-error");
 const cors = require("koa2-cors");
+const stripe = require("stripe")(
+  "sk_test_51NNoFsCEbav22JyK56mbqNeCyEFoEPh5ywypgCUHXrNtQN1O4cWTbEIebDFOjK9XIR40TAVzuzvcrJburtcudpst00Q6ciqjrz"
+);
+
+const admin = require("firebase-admin");
+const serviceAccount = require("../assets/serviceAccountKey.json");
+
+admin.initializeApp({
+  credential: admin.credential.cert(serviceAccount),
+  storageBucket: "gs://nike-website-e9f4e.appspot.com"
+});
 
 const app = new Koa();
 const router = new Router();
@@ -24,7 +35,7 @@ const transporter = nodemailer.createTransport({
     pass: "jiknqcxjjdskbbgi" // 发件人邮箱授权码或密码
   }
 });
-
+//发送验证码
 router.post("/sendCode", async (ctx) => {
   // 生成随机数验证码;
   const code = randomstring.generate({
@@ -52,7 +63,6 @@ router.post("/sendCode", async (ctx) => {
     ctx.app.context.sessionCode = code;
     // 设置验证码的过期时间（例如60秒）
     ctx.app.context.codeExpiration = Date.now() + 60000;
-
   } catch (error) {
     console.error(error);
     ctx.body = {
@@ -62,11 +72,11 @@ router.post("/sendCode", async (ctx) => {
     };
   }
 });
-
+//验证验证码
 router.post("/verifyCode", async (ctx) => {
   const { code } = ctx.request.body;
   const { sessionCode, codeExpiration } = ctx.app.context;
-  
+
   if (!code || code != sessionCode) {
     ctx.body = {
       valid: false,
@@ -84,7 +94,78 @@ router.post("/verifyCode", async (ctx) => {
     };
   }
 });
+//stripe支付功能
+router.post("/create-checkout-session", async (ctx) => {
+  const { shoe } = ctx.request.body;
+  const priceString = shoe.new_price; // ￥999
+  const priceNumber = Number(priceString.slice(1)); // 999
 
+  const shoeNumber = extractShoeNumber(shoe.src);
+  const imageUrl = await getImageUrl(shoeNumber);
+
+  const session = await stripe.checkout.sessions.create({
+    line_items: [
+      {
+        price_data: {
+          currency: "HKD",
+          product_data: {
+            name: shoe.name,
+            description: shoe.name_cn,
+            images: [imageUrl]
+          },
+          unit_amount: priceNumber * 100 // 以最小货币单位表示的价格，例如港币的金额乘以100
+        },
+        quantity: 1
+      }
+    ],
+    mode: "payment",
+    success_url: `http://localhost:5173`,
+    cancel_url: `http://localhost:5173`
+  });
+  ctx.body = {
+    redirectUrl: session.url
+  };
+});
+
+// 从鞋子的 src 中提取数字
+function extractShoeNumber(src) {
+  const regex = /man(\d+)\.webp/;
+  const match = src.match(regex);
+  if (match && match[1]) {
+    return parseInt(match[1]);
+  }
+  return null;
+}
+
+// 根据鞋子编号获取图片地址
+async function getImageUrl(shoeNumber) {
+  if (!shoeNumber) {
+    return null;
+  }
+
+  const bucket = admin.storage().bucket();
+  const filename = `man${shoeNumber}.webp`;
+  const file = bucket.file(filename);
+
+  const [url] = await file.getSignedUrl({
+    action: "read",
+    expires: "01-01-2030" // 设置有效期
+  });
+
+  return url;
+}
+
+// 添加 CSP 头部
+app.use(async (ctx, next) => {
+  // ctx.set("Content-Security-Policy", "script-src 'self' 'unsafe-inline' https://js.stripe.com");
+  ctx.set(
+    "Content-Security-Policy",
+    "script-src 'self' 'unsafe-inline' https://js.stripe.com; img-src 'self' http://localhost:5173"
+  );
+
+  await next();
+});
+//解决跨域
 app.use(
   cors({
     origin: "http://localhost:5173",
