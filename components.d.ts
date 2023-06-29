@@ -22,6 +22,7 @@ declare module 'vue' {
     JordanSvg: typeof import('./src/components/SvgIcons/jordanSvg.vue')['default']
     LocationSvg: typeof import('./src/components/SvgIcons/locationSvg.vue')['default']
     MainContentView: typeof import('./src/components/MainContentView.vue')['default']
+    MenuBtn: typeof import('./src/components/SvgIcons/menuBtn.vue')['default']
     MuteSvg: typeof import('./src/components/SvgIcons/muteSvg.vue')['default']
     NikelogoSvg: typeof import('./src/components/SvgIcons/nikelogoSvg.vue')['default']
     RouterLink: typeof import('vue-router')['RouterLink']

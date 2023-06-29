@@ -3,10 +3,11 @@
   <div class="px-12">
     <figure>
       <a href="#">
-        <img src="@/assets/images/hero.png" alt="超级主题日img" class="w-full h-full" />
-        <figcaption class="mx-auto mt-12 text-center">
-          <h1 class="text-[2rem] mb-6">超级主题日 女生玩趣单品</h1>
-          <h2 class="mb-6">臻选产品低至5折,&nbsp;指定产品至高享2件5折优惠。</h2>
+        <img src="@/assets/images/hero.png" alt="超级主题日img" class="w-full h-full m8:hidden" />
+        <img src="@/assets/images/smallhero.jpg" alt="超级主题日img" class="w-full h-full hidden m8:block" />
+        <figcaption class="mx-auto mt-12 text-center m5:text-start m7:mt-6">
+          <h1 class="text-[2rem] mb-6 m4:text-[1.8rem] m8:text-[1.6rem]">超级主题日 女生玩趣单品</h1>
+          <h2 class="mb-6 m4:text-[.8rem] m8:text-[.6rem]">臻选产品低至5折,&nbsp;指定产品至高享2件5折优惠。</h2>
           <buyButton text="即刻选购"></buyButton>
         </figcaption>
       </a>
@@ -15,21 +16,21 @@
   <!-- 男鞋推荐榜单 -->
   <div class="px-8 mt-[5rem]">
     <h1 class="pl-4 mb-6 text-[1.5rem]">6.18男鞋推荐榜单</h1>
-    <carousel :items-to-show="3" :mouseDrag="false" class="z-1">
+    <carousel :items-to-show="isWideScreen ? 1 : 3" :mouseDrag="false" class="z-1">
       <slide v-for="shoe in shoes" :key="shoe.name">
         <div @click="checkOut(shoe)">
           <router-link to="/">
-            <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class=" w-[30vw] z-0">
-            <div class="mt-4 flex justify-between">
+            <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class="w-[30vw] z-0 m6:w-[50vw]">
+            <div class="mt-4 flex justify-between m6:flex-col">
               <div class=" flex flex-col gap-2 items-start">
-                <span>{{ shoe.name }}</span>
-                <span class=" text-gray-500">{{ shoe.name_cn }}</span>
+                <span class=" m3:text-[8px]">{{ shoe.name }}</span>
+                <span class=" text-gray-500 m3:text-[8px]">{{ shoe.name_cn }}</span>
               </div>
-              <div class=" flex gap-1">
-                <span class="old_price relative">
+              <div class="flex gap-1 m6:mt-2">
+                <span class="old_price relative m3:text-[8px]">
                   {{ shoe.old_price }}
                 </span>
-                <span>{{ shoe.new_price }}</span>
+                <span class="m3:text-[8px]">{{ shoe.new_price }}</span>
               </div>
             </div>
           </router-link>
@@ -45,25 +46,25 @@
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">心选好物多件多折</h1>
     <h2 class="mb-4">(全站商品可参与凑单，部分商品除外)</h2>
-    <div class="flex gap-3">
-      <a href="#"><img src="@/assets/images/ad1.png" alt="鞋子广告img1" class="h-auto min-w-[20rem]" /></a>
-      <a href="#"><img src="@/assets/images/ad2.png" alt="鞋子广告img2" class="h-auto min-w-[20rem]" /></a>
+    <div class="flex gap-3 m6:flex-col">
+      <a href="#"><img src="@/assets/images/ad1.png" alt="鞋子广告img1" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
+      <a href="#"><img src="@/assets/images/ad2.png" alt="鞋子广告img2" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
     </div>
   </div>
   <!-- 超级主题日 -->
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">超级主题日</h1>
-    <div class="flex gap-3">
-      <a href="#"><img src="@/assets/images/ad4.png" alt="鞋子广告img3" class="h-auto min-w-[20rem]" /></a>
-      <a href="#"><img src="@/assets/images/hp.jpg" alt="衣服广告img1" class="h-auto min-w-[20rem]" /></a>
+    <div class="flex gap-3 m6:flex-col">
+      <a href="#"><img src="@/assets/images/ad4.png" alt="鞋子广告img3" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
+      <a href="#"><img src="@/assets/images/hp.jpg" alt="衣服广告img1" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
     </div>
   </div>
   <!-- 街舞系列 -->
   <div class="px-12 mt-[5rem]">
     <a href="#">
       <img src="@/assets/images/hero2.png" alt="街舞系列img" class="h-full w-full" />
-      <div class="text-center mt-12">
-        <h1 class="text-3xl mb-8">新一季街舞专属系列登场</h1>
+      <div class="text-center mt-12 m5:text-start">
+        <h1 class="text-3xl mb-8 m4:text-[1.6rem] m8:text-[1.4rem]">新一季街舞专属系列登场</h1>
         <buyButton text="立即入手"></buyButton>
       </div>
     </a>
@@ -73,16 +74,17 @@
     <!-- <img src="@/assets/images/hero3.png" alt="六一系列img" class="h-full w-full" /> -->
     <video src="@/assets/videos/61ad.mp4" poster="@/assets/images/hero3.png" preload="auto" class="h-full w-full"
       ref="videoRef" @playing="handleVideoPlaying" @loadedmetadata="handleVideoLoaded" :controls="isPlaying"></video>
-    <div class="text-center mt-12">
-      <h1 class="text-3xl mb-8">爸妈说GO | 卡卡 有办法</h1>
-      <h2 class="mb-8">爸爸妈妈，这个六一，来看我的超能力!</h2>
+    <div class="text-center mt-12 m5:text-start m8:mt-6">
+      <h1 class="text-3xl mb-8 m4:text-[1.6rem] m8:text-[1.4rem]">爸妈说GO | 卡卡 有办法</h1>
+      <h2 class="mb-8 m4:text-[.8rem] m8:text-[.6rem]">爸爸妈妈，这个六一，来看我的超能力!</h2>
       <buyButton text="逆袭装备,即刻GET"></buyButton>
     </div>
-    <span v-show="!isPlaying" class="text-white text-[1.4rem] absolute top-[2rem] left-[6rem]">
+    <span v-show="!isPlaying"
+      class="text-white text-[1.4rem] absolute top-[2rem] m8:top-[1rem] left-[6rem] m8:left-[4.5rem] m8:text-[4px]">
       {{ formattedTime }}
     </span>
     <button @click="playVideo" v-show="!isPlaying"
-      class="outline-none hover:bg-gray-300 rounded-full flex items-center justify-center gap-2 px-[22px] py-[6px] bg-white absolute bottom-[16rem] left-[7rem]">
+      class="outline-none hover:bg-gray-300 rounded-full flex items-center justify-center gap-2 px-[22px] py-[6px] m8:px-[6px] m8:py-[1px] m8:text-[4px] bg-white absolute bottom-[16rem] left-[7rem] m8:bottom-[12rem] m8:left-[4rem] ">
       <span>观看</span>
       <smallArrow />
     </button>
@@ -91,8 +93,8 @@
   <div class="px-12 mt-[5rem]">
     <a href="#">
       <img src="@/assets/images/ad5.png" alt="女足img" class="h-full w-full" />
-      <div class="text-center mt-12">
-        <h1 class="text-3xl mb-8">共襄盛事 为女足国家队助威</h1>
+      <div class="text-center mt-12 m8:mt-6 m5:text-start">
+        <h1 class="text-3xl mb-8 m4:text-[1.6rem] m8:text-[1.4rem]">共襄盛事 为女足国家队助威</h1>
         <buyButton text="立即购买"></buyButton>
       </div>
     </a>
@@ -101,9 +103,9 @@
   <div class="px-12 mt-[5rem]">
     <a href="#">
       <img src="@/assets/images/hp2.jpg" alt="Nike motiva img" class="h-full w-full" />
-      <div class="text-center mt-12">
-        <h1 class="text-3xl mb-8">跟着 Nike Motiva 开启城市漫游</h1>
-        <h2 class="mb-8">上脚即舒适，浪感不掉线，随你怎么走</h2>
+      <div class="text-center mt-12 m5:text-start m8:mt-6">
+        <h1 class="text-3xl mb-8 m4:text-[1.6rem] m8:text-[1.4rem]">跟着 Nike Motiva 开启城市漫游</h1>
+        <h2 class="mb-8 m4:text-[.8rem] m8:text-[.6rem]">上脚即舒适，浪感不掉线，随你怎么走</h2>
         <buyButton text="立即选购"></buyButton>
       </div>
     </a>
@@ -111,9 +113,9 @@
   <!-- 这夏天,有看头 -->
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">这夏天 有看头</h1>
-    <div class="flex gap-3">
-      <a href="#"><img src="@/assets/images/hp3.jpg" alt="男子装备img" class="h-auto min-w-[20rem]" /></a>
-      <a href="#"><img src="@/assets/images/hp4.jpg" alt="女子装备img" class="h-auto min-w-[20rem]" /></a>
+    <div class="flex gap-3 m6:flex-col">
+      <a href="#"><img src="@/assets/images/hp3.jpg" alt="男子装备img" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
+      <a href="#"><img src="@/assets/images/hp4.jpg" alt="女子装备img" class="h-auto min-w-[20rem] m8:min-w-[16rem]" /></a>
     </div>
   </div>
   <!-- 定制广告 -->
@@ -123,7 +125,7 @@
   <!-- Nike App 专属福利 -->
   <div class="px-12 mt-[5rem]">
     <h1 class="text-2xl mb-5">Nike App专属福利</h1>
-    <div class="flex gap-3">
+    <div class="flex gap-3 m6:flex-col">
       <div class="flex-1 h-full w-full">
         <img src="@/assets/images/hp.webp" alt="Nike App img" class="" />
       </div>
@@ -164,10 +166,11 @@
     </div>
   </div>
   <!-- 底部菜单 -->
-  <div class="bottomMenu mt-[5rem] mb-[4rem] justify-center flex gap-16 list-none">
+  <div
+    class="bottomMenu mt-[5rem] mb-[4rem] justify-center flex gap-16 list-none px-12 m6:flex-col m6:gap-2 m6:pointer-events-none">
     <div class="bottomNav">
       <h2 class="mb-6">经典系列</h2>
-      <ul class=" text-gray-500">
+      <ul class=" text-gray-500 m6:hidden">
         <li><a href="#">AF1</a></li>
         <li><a href="#">AJ1</a></li>
         <li><a href="#">BLAZER</a></li>
@@ -182,7 +185,7 @@
     </div>
     <div class="bottomNav">
       <h2 class="mb-6">鞋类</h2>
-      <ul class="text-gray-500">
+      <ul class="text-gray-500 m6:hidden">
         <li><a href="#">所有鞋类</a></li>
         <li><a href="#">Jordan</a></li>
         <li><a href="#">休闲</a></li>
@@ -197,7 +200,7 @@
     </div>
     <div class="bottomNav">
       <h2 class="mb-6">服装</h2>
-      <ul class="text-gray-500">
+      <ul class="text-gray-500 m6:hidden">
         <li><a href="#">所有服装</a></li>
         <li><a href="#">上衣/T恤</a></li>
         <li><a href="#">短裤</a></li>
@@ -214,7 +217,7 @@
     </div>
     <div class="bottomNav">
       <h2 class="mb-6">配件</h2>
-      <ul class="text-gray-500">
+      <ul class="text-gray-500 m6:hidden">
         <li><a href="#">包</a></li>
         <li><a href="#">袜子</a></li>
         <li><a href="#">帽子和头戴</a></li>
@@ -223,7 +226,7 @@
     </div>
     <div class="bottomNav">
       <h2 class="mb-6">儿童</h2>
-      <ul class="text-gray-500">
+      <ul class="text-gray-500 m6:hidden">
         <li><a href="#">所有儿童鞋类</a></li>
         <li><a href="#">儿童穿脱自如鞋类</a></li>
         <li><a href="#">儿童休闲鞋类</a></li>
@@ -243,7 +246,7 @@
 </template>
 
 <script setup lang="ts">
-import { reactive, Ref, ref, toRefs, watch } from "vue";
+import { onMounted, reactive, Ref, ref, toRefs, watch } from "vue";
 import buyButton from "./Buttons/buyButton.vue";
 import smallArrow from "@/components/SvgIcons/smallArrow.vue";
 import unMuteSvg from "./SvgIcons/unMuteSvg.vue";
@@ -330,6 +333,20 @@ const checkOut = async (shoe) => {
     console.log(error);
   }
 };
+
+//轮播图动态显示
+const isWideScreen = ref(false);
+onMounted(() => {
+  const minWidth = window.matchMedia('(max-width: 800px)').matches;
+  isWideScreen.value = minWidth;
+
+  const handleResize = () => {
+    const minWidth = window.matchMedia('(max-width: 800px)').matches;
+    isWideScreen.value = minWidth;
+  };
+
+  window.addEventListener('resize', handleResize);
+});
 
 //自定义调整音量组件
 // const isDragging = ref(false);
@@ -457,6 +474,12 @@ const checkOut = async (shoe) => {
   background-color: #111;
   position: absolute;
   top: 21%;
+}
+
+@media (max-width: 800px) {
+  .old_price::before {
+    top: 40%;
+  }
 }
 
 .carousel__prev,

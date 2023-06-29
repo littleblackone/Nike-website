@@ -2,7 +2,7 @@
   <div class="headerPart">
     <!-- 位置固定的header部分 -->
     <div class="fixed top-0 w-full z-[100]">
-      <div class="h-[36px] w-full bg-[#F5F5F5] py-1 px-12 items-center flex">
+      <div class="m5:hidden h-[36px] w-full bg-[#F5F5F5] py-1 px-12 items-center flex">
         <div class="flex gap-6 items-center">
           <JordanSvg class="cursor-pointer hover:fill-[#767575]" />
           <ArrowSvg class="cursor-pointer hover:fill-[#767575]" />
@@ -13,9 +13,9 @@
           <router-link to="/login" class="text-[12px] hover:text-gray-500">登录/注册</router-link>
         </div>
       </div>
-      <div class="h-[64px] w-full bg-white flex px-12 py-4 items-center relative">
+      <div class="h-[64px] m5:justify-between w-full bg-white flex px-12 py-4 items-center relative">
         <NikelogoSvg class="scale-[3.3] ml-[20px] cursor-pointer hover:fill-[#767575]" />
-        <nav class="flex items-center gap-6 text-base list-none mx-auto pl-[12rem]">
+        <nav class="flex items-center gap-6 text-base list-none mx-auto pl-[12rem] m5:hidden">
           <li class="playNav">
             <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">玩转酷夏</span>
             <div class="playSummer absolute top-[4rem] left-0 bg-white w-full">
@@ -73,21 +73,21 @@
             <div class="mask"></div>
           </li>
           <li>
-            <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">新品尝鲜</span>
+            <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px] m5:hidden">新品尝鲜</span>
           </li>
-          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">男子</span></li>
-          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">女子</span></li>
-          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">儿童</span></li>
+          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px] m5:hidden">男子</span></li>
+          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px] m4:hidden">女子</span></li>
+          <li><span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px] m3:hidden">儿童</span></li>
           <li>
-            <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">专属定制</span>
+            <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px] m2:hidden">专属定制</span>
           </li>
           <li>
-            <span class="cursor-pointer hover:border-b-2 border-b-black pb-[14px]">Jordan</span>
+            <span class=" m1:hidden cursor-pointer hover:border-b-2 border-b-black pb-[14px]">Jordan</span>
           </li>
         </nav>
         <!-- 搜索框和图标-->
         <div class="flex items-center gap-6 translate-x-[10px]">
-          <div class="relative group">
+          <div class="relative group m5:hidden ">
             <button
               class="hover:bg-[#E5E5E5] group-hover:bg-[#E5E5E5] outline-none rounded-full p-[0.5rem] bg-[#F5F5F5] absolute top-0 left-0">
               <SearchSvg />
@@ -96,18 +96,26 @@
               class="w-[180px] hover:bg-[#E5E5E5] outline-none placeholder-gray-300 py-2 px-[2.5rem] rounded-full bg-[#F5F5F5]"
               placeholder="搜索" />
           </div>
-          <a href="#" class="rounded-full p-[6px] hover:bg-gray-200">
+          <div class="n1:hidden">
+            <button class="outline-none rounded-full pt-[.5rem]">
+              <SearchSvg />
+            </button>
+          </div>
+          <a href="#" class="rounded-full p-[6px] hover:bg-gray-200 m5:hidden">
             <HeartSvg />
           </a>
           <a href="#" class="rounded-full p-[6px] hover:bg-gray-200">
             <ShopSvg />
           </a>
+          <a href="#">
+            <menuBtn class="n1:hidden rounded-full p-[6px] scale-[1.9]" />
+          </a>
         </div>
       </div>
     </div>
     <!-- 位置不固定的header部分 -->
-    <div class="h-[60px] bg-[#F5F5F5] w-full mt-[100px] text-[10px] text-center">
-      <p class="pt-4">
+    <div class="h-[60px] bg-[#F5F5F5] w-full m5:mt-[65px] mt-[100px] text-[10px] text-center m8:h-[30px]">
+      <p class="pt-4 m8:hidden">
         逢考必胜T恤热血上线,&nbsp;&nbsp;好运Buff加持,&nbsp;&nbsp;助你考场所向披靡,全对上岸!&nbsp;&nbsp;
         <a href="#" class="cursor-pointer border-b-[1px] border-b-black">即刻入手 </a>
       </p>
@@ -122,6 +130,7 @@ import NikelogoSvg from "./SvgIcons/nikelogoSvg.vue";
 import HeartSvg from "./SvgIcons/heartSvg.vue";
 import ShopSvg from "./SvgIcons/shopSvg.vue";
 import SearchSvg from "./SvgIcons/searchSvg.vue";
+import menuBtn from "./SvgIcons/menuBtn.vue";
 </script>
 
 <style lang="scss" scoped>

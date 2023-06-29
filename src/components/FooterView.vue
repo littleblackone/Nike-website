@@ -1,6 +1,6 @@
 <template>
-  <div class="footerPart w-full h-full bg-[#111111] relative px-44">
-    <div class="pt-8 pb-32 pl-14 list-none flex gap-[10rem] justify-start">
+  <div class="footerPart w-full h-full bg-[#111111] relative px-44 m7:px-4">
+    <div class="pt-8 pb-32 pl-14 list-none flex gap-[10rem] justify-start m7:flex-col m7:gap-[2rem]">
       <ul class="text-white flex flex-col gap-4 text-[14px]">
         <a href="#">
           <li>电子礼品卡</li>
@@ -12,7 +12,7 @@
           <li>注册NIKE会员</li>
         </a>
       </ul>
-      <ul class="footerNav text-[#7e7e7e] text-[10px] flex flex-col gap-4">
+      <ul class="footerNav text-[#7e7e7e] text-[10px] flex flex-col gap-4 m7:gap-2">
         <a href="#">
           <li class="text-white text-[14px]">获得帮助</li>
         </a>
@@ -32,7 +32,7 @@
           <li>联系我们</li>
         </a>
       </ul>
-      <ul class="footerNav text-[#7e7e7e] text-[10px] flex flex-col gap-4">
+      <ul class="footerNav text-[#7e7e7e] text-[10px] flex flex-col gap-4 m7:gap-2">
         <a href="#">
           <li class="text-[14px] text-white">关于NIKE</li>
         </a>
@@ -47,10 +47,10 @@
         </a>
       </ul>
     </div>
-    <div class="flex items-center absolute bottom-3 left-[14rem]">
-      <locationSvg></locationSvg>
-      <span class="text-[12px] text-white pl-2">中国大陆</span>
-      <span class="text-[#7e7e7e] text-[6px] pl-6">© 2023 Nike, Inc. 保留所有权利</span>
+    <div class="flex items-center absolute bottom-3 left-[14rem] m7:flex-col m7:bottom-1 m7:left-[1rem] m7:items-start">
+      <locationSvg class=" m7:absolute m7:translate-x-[-2]"></locationSvg>
+      <span class="text-[12px] text-white pl-2 m7:pl-4">中国大陆</span>
+      <span class="text-[#7e7e7e] text-[6px] pl-6 m7:pl-1">© 2023 Nike, Inc. 保留所有权利</span>
     </div>
     <!-- footer 右边部分 -->
     <div class="flex items-center absolute top-8 right-16 gap-6">
@@ -65,8 +65,8 @@
       <img src="@/assets/images/qrCode.png" alt="二维码"
         class="qrCode w-full h-auto scale-[1.8] absolute bottom-[-8.2rem] left-[-1.2rem]">
     </div>
-    <div class="bottom-14 right-16 absolute list-none">
-      <ul class="footerNav2 flex gap-4 text-[10px] text-[#7e7e7e]">
+    <div class="bottom-14 right-16 absolute list-none m7:right-4 m7:bottom-[12rem]">
+      <ul class="footerNav2 flex gap-4 text-[10px] text-[#7e7e7e] m7:grid m7:grid-cols-1">
         <a href="#">
           <li>分类浏览</li>
         </a>
@@ -89,7 +89,7 @@
         </a>
       </ul>
     </div>
-    <div class="bottom-2 right-16 absolute text-[10px] text-[#7e7e7e]">
+    <div class="bottom-2 right-16 absolute text-[10px] text-[#7e7e7e] m7:right-2 m7:bottom-[10rem]">
       <a href="#" class="flex gap-1 items-center">
         <img src="@/assets/images/police.png" alt="网安" class="">
         <span class="hover:text-white">沪公网安备31011002000177号</span>
