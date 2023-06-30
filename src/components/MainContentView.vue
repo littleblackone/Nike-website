@@ -246,7 +246,7 @@
 </template>
 
 <script setup lang="ts">
-import { onMounted, reactive, Ref, ref, toRefs, watch } from "vue";
+import { onMounted, reactive, ref, toRefs, watch } from "vue";
 import buyButton from "./Buttons/buyButton.vue";
 import smallArrow from "@/components/SvgIcons/smallArrow.vue";
 import unMuteSvg from "./SvgIcons/unMuteSvg.vue";
@@ -256,6 +256,7 @@ import shoes from "@/assets/shoes.json";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import axios from "axios";
+import type { Ref } from "vue";
 
 //61儿童节活动视频自定义功能
 const formattedTime = ref("00:00");
