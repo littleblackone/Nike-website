@@ -49,6 +49,7 @@
     "npm-run-all": "^4.1.5",
     "postcss": "^8.4.24",
     "prettier": "^2.8.8",
+    "rollup-plugin-copy": "^3.4.0",
     "tailwindcss": "^3.3.2",
     "typescript": "~5.0.4",
     "unplugin-auto-import": "^0.16.4",
