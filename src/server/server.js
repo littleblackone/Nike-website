@@ -96,11 +96,13 @@ router.post("/verifyCode", async (ctx) => {
 //stripe支付功能
 router.post("/create-checkout-session", async (ctx) => {
   const { shoe } = ctx.request.body;
+  console.log(shoe);
   const priceString = shoe.new_price; // ￥999
   const priceNumber = Number(priceString.slice(1)); // 999
 
   const shoeNumber = extractShoeNumber(shoe.src);
   const imageUrl = await getImageUrl(shoeNumber);
+  console.log(shoeNumber, imageUrl);
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
@@ -118,8 +120,8 @@ router.post("/create-checkout-session", async (ctx) => {
       }
     ],
     mode: "payment",
-    success_url: `http://localhost:5173`,
-    cancel_url: `http://localhost:5173`
+    success_url: `https://benevolent-boba-6d7053.netlify.app`,
+    cancel_url: `https://benevolent-boba-6d7053.netlify.app`
   });
   ctx.body = {
     redirectUrl: session.url
@@ -128,7 +130,8 @@ router.post("/create-checkout-session", async (ctx) => {
 
 // 从鞋子的 src 中提取数字
 function extractShoeNumber(src) {
-  const regex = /man(\d+)\.webp/;
+  // eslint-disable-next-line no-useless-escape
+  const regex = /man(\d+)\-/;
   const match = src.match(regex);
   if (match && match[1]) {
     return parseInt(match[1]);
@@ -167,7 +170,7 @@ app.use(async (ctx, next) => {
 //解决跨域
 app.use(
   cors({
-    origin: "http://localhost:5173",
+    origin: "https://benevolent-boba-6d7053.netlify.app",
     credentials: true,
     allowMethods: ["GET", "POST"],
     allowHeaders: ["Content-Type"]
