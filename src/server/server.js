@@ -96,13 +96,11 @@ router.post("/verifyCode", async (ctx) => {
 //stripe支付功能
 router.post("/create-checkout-session", async (ctx) => {
   const { shoe } = ctx.request.body;
-  console.log(shoe);
   const priceString = shoe.new_price; // ￥999
   const priceNumber = Number(priceString.slice(1)); // 999
 
   const shoeNumber = extractShoeNumber(shoe.src);
   const imageUrl = await getImageUrl(shoeNumber);
-  console.log(shoeNumber, imageUrl);
 
   const session = await stripe.checkout.sessions.create({
     line_items: [
