@@ -1,5 +1,4 @@
 import { fileURLToPath, URL } from "node:url";
-import copy from "rollup-plugin-copy";
 import { defineConfig } from "vite";
 import vue from "@vitejs/plugin-vue";
 import AutoImport from "unplugin-auto-import/vite";
@@ -14,15 +13,6 @@ export default defineConfig({
     }),
     Components({
       resolvers: [ElementPlusResolver()]
-    }),
-    copy({
-      targets: [
-        {
-          src: "src/assets/images/carousel1",
-          dest: "dist/assets/images/carousel1"
-        }
-      ],
-      hook: "writeBundle"
     })
   ],
   resolve: {

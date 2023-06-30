@@ -20,7 +20,7 @@
       <slide v-for="shoe in shoes" :key="shoe.name">
         <div @click="checkOut(shoe)">
           <router-link to="/">
-            <img :src="`${shoe.src}`" :alt="`${shoe.name}`" class="w-[30vw] z-0 m6:w-[50vw]">
+            <img :src="shoe.src" :alt="`${shoe.name}`" class="w-[30vw] z-0 m6:w-[50vw]">
             <div class="mt-4 flex justify-between m6:flex-col">
               <div class=" flex flex-col gap-2 items-start">
                 <span class=" m3:text-[8px]">{{ shoe.name }}</span>
@@ -252,11 +252,95 @@ import smallArrow from "@/components/SvgIcons/smallArrow.vue";
 import unMuteSvg from "./SvgIcons/unMuteSvg.vue";
 import muteSvg from "./SvgIcons/muteSvg.vue";
 import { formatTime } from "@/utils/helperFun";
-import shoes from "@/assets/shoes.json";
 import 'vue3-carousel/dist/carousel.css';
 import { Carousel, Slide, Pagination, Navigation } from 'vue3-carousel';
 import axios from "axios";
 import type { Ref } from "vue";
+
+import shoe1 from '@/assets/images/man1.webp';
+import shoe2 from '@/assets/images/man2.webp';
+import shoe3 from '@/assets/images/man3.webp';
+import shoe4 from '@/assets/images/man4.webp';
+import shoe5 from '@/assets/images/man5.webp';
+import shoe6 from '@/assets/images/man6.webp';
+import shoe7 from '@/assets/images/man7.webp';
+import shoe8 from '@/assets/images/man8.webp';
+import shoe9 from '@/assets/images/man9.webp';
+import shoe10 from '@/assets/images/man10.webp';
+
+const shoes = ref([
+  {
+    "name": "Nike Air Zoom G.T Jump EP",
+    "name_cn": "男/女篮球鞋",
+    "old_price": "￥1,499",
+    "new_price": "￥999",
+    "src": shoe1
+  },
+  {
+    "name": "Nike Air Zoom G.T Jump EP",
+    "name_cn": "男/女篮球鞋",
+    "old_price": "￥1,499",
+    "new_price": "￥999",
+    "src": shoe2
+  },
+  {
+    "name": "Nike Zoom Vomero 5",
+    "name_cn": "男子运动鞋",
+    "old_price": "￥999",
+    "new_price": "￥849",
+    "src": shoe3
+  },
+  {
+    "name": "Nike Air Force 1'07",
+    "name_cn": "男子空军一号运动鞋",
+    "old_price": "￥799",
+    "new_price": "￥699",
+    "src": shoe4
+  },
+  {
+    "name": "Nike Air Force 1 Low Retro",
+    "name_cn": "男子空军一号运动鞋",
+    "old_price": "￥899",
+    "new_price": "￥749",
+    "src": shoe5
+  },
+  {
+    "name": "Nike Air Monarch IV",
+    "name_cn": "训练老爹鞋",
+    "old_price": "￥549",
+    "new_price": "￥379",
+    "src": shoe6
+  },
+  {
+    "name": "Nike Air Zoom G.T Cut 2 EP",
+    "name_cn": "篮球鞋实战快速切入",
+    "old_price": "￥1,399",
+    "new_price": "￥1,099",
+    "src": shoe7
+  },
+  {
+    "name": "Nike Pegasus 39",
+    "name_cn": "男子耐克飞马跑步鞋",
+    "old_price": "￥899",
+    "new_price": "￥529",
+    "src": shoe8
+  },
+  {
+    "name": "Air Jordan Leagacy 312 Low",
+    "name_cn": "男子运动鞋",
+    "old_price": "￥999",
+    "new_price": "￥599",
+    "src": shoe9
+  },
+  {
+    "name": "Air Jordan 1 Retro High OG",
+    "name_cn": "复刻男子运动鞋",
+    "old_price": "￥1,399",
+    "new_price": "￥1189",
+    "src": shoe10
+  }
+]
+);
 
 //61儿童节活动视频自定义功能
 const formattedTime = ref("00:00");
